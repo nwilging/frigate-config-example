@@ -1,2 +1,3 @@
-# frigate-config-example
-Example of Frigate NVR auto config: 
+# Frigate NVR Auto Configuration
+
+Blog post:

@@ -1,0 +1,4 @@
+mqtt:
+  host: "{{ MQTT_HOST }}"
+  user: "{{ MQTT_USER }}"
+  password: "{{ MQTT_PASSWORD }}"

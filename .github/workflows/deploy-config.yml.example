@@ -1,0 +1,33 @@
+name: Build and Deploy Config
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  deploy-config:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
+      - name: Build Config
+        env:
+          MQTT_HOST: ${{ secrets.MQTT_HOST }}
+          MQTT_USER: ${{ secrets.MQTT_USER }}
+          MQTT_PASSWORD: ${{ secrets.MQTT_PASSWORD }}
+          CAMERA1_RTSP: ${{ secrets.CAMERA1_RTSP }}
+          CAMERA2_RTSP: ${{ secrets.CAMERA2_RTSP }}
+        run: python3 ./compile.py
+      - name: Deploy Config
+        env:
+          RANCHER_URL: ${{ secrets.RANCHER_URL }}
+          RANCHER_TOKEN: ${{ secrets.RANCHER_TOKEN }}
+          RANCHER_CONTEXT: ${{ secrets.RANCHER_CONTEXT }}
+        run: |
+          ./.github/scripts/rancher/install.sh
+          YAML=$(cat ./output)
+          ./rancher kubectl --insecure-skip-tls-verify \
+              --namespace=<NAMESPACE> patch ConfigMap/<CONFIG MAP NAME> \
+              -o yaml --patch "{\"data\":{\"config.yaml\":$YAML}}"

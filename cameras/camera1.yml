@@ -1,0 +1,13 @@
+camera:
+  name: camera1
+  template: amcrestIP5M-T1179EW
+  rtsp_url: "{{ CAMERA1_RTSP }}"
+  frigate:
+    zones:
+      patio:
+        coordinates: 997,596,1084,534,1181,523,1264,557,1346,566,1204,724,833,684
+      back_door:
+        coordinates: 1331,602,1503,491,1489,674,1405,673,1346,685,1231,675,1271,626
+    motion:
+      mask:
+        - 587,202,732,206,802,245,942,231,915,428,482,445,488,241 # Tree line

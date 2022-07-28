@@ -1,0 +1,3 @@
+detectors:
+  cpu1:
+    type: cpu

@@ -1,0 +1,4 @@
+camera:
+  name: camera2
+  template: wyzev2
+  rtsp_url: "{{ CAMERA2_RTSP }}"

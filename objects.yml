@@ -1,0 +1,12 @@
+objects:
+  track:
+    - person
+    - dog
+    - cat
+    - car
+  filters:
+    person:
+      min_area: 5000
+      max_area: 100000
+      min_score: 0.5
+      threshold: 0.7

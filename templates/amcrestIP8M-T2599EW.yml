@@ -1,0 +1,16 @@
+camera:
+  ffmpeg:
+    inputs:
+      - path:
+        roles:
+          - detect
+          - record
+  rtmp:
+    enabled: False
+  record:
+    enabled: True
+  snapshots:
+    enabled: True
+  detect:
+    width: 3840
+    height: 2160
